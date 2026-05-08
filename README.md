@@ -1,14 +1,16 @@
 # gauge-playwright-kotlin
 
-[Gauge](https://gauge.org/) + [Playwright](https://playwright.dev/java/) + Kotlin(Maven) のプロジェクトテンプレートです。
+A project template for [Gauge](https://gauge.org/) + [Playwright](https://playwright.dev/java/) + Kotlin (Maven).
 
-## テンプレートとして使う
+[日本語](README.ja.md)
+
+## Use as a template
 
 ```bash
 gauge init gh/U5K492/gauge-playwright-kotlin
 ```
 
-## 必要な環境
+## Prerequisites
 
 - Java 21+
 - Maven 3.8+
@@ -21,34 +23,34 @@ gauge init gh/U5K492/gauge-playwright-kotlin
   gauge install html-report
   ```
 
-- Playwright ブラウザ（初回のみ）
+- Playwright browsers (first time only)
 
   ```bash
   mvn exec:java -e -D exec.mainClass=com.microsoft.playwright.CLI -D exec.args="install chromium"
   ```
 
-## 実行
+## Run
 
 ```bash
 gauge run specs
 ```
 
-## プロジェクト構成
+## Project structure
 
 ```
 .
-├── specs/                   # Gaugeスペックファイル (.spec)
+├── specs/                   # Gauge spec files (.spec)
 ├── src/test/kotlin/
-│   ├── PlaywrightManager.kt # Playwrightのセットアップ・管理
-│   ├── Example.kt           # BeforeSuite / AfterSuite / Step 実装例
-│   └── Display.kt           # アサーション実装例
+│   ├── PlaywrightManager.kt # Playwright setup and lifecycle management
+│   ├── Example.kt           # BeforeSuite / AfterSuite / Step examples
+│   └── Display.kt           # Assertion examples
 ├── env/default/
-│   ├── default.properties   # Gauge設定
-│   └── java.properties      # Java実行設定
-├── fixtures/                # テスト用フィクスチャファイル置き場
+│   ├── default.properties   # Gauge configuration
+│   └── java.properties      # Java execution configuration
+├── fixtures/                # Test fixture files
 └── pom.xml
 ```
 
-## ライセンス
+## License
 
 [Apache 2.0](LICENSE)
