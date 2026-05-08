@@ -9,10 +9,11 @@
 
     <properties>
         <kotlin.compiler.incremental>true</kotlin.compiler.incremental>
-        <java.version>17</java.version>
-        <kotlin.version>1.9.20</kotlin.version>
-        <gauge.java.version>0.10.3</gauge.java.version>
-        <gauge.maven.version>1.4.3</gauge.maven.version>
+        <java.version>25</java.version>
+        <kotlin.version>2.2.0</kotlin.version>
+        <kotlin.jvm.target>24</kotlin.jvm.target>
+        <gauge.java.version>0.11.3</gauge.java.version>
+        <gauge.maven.version>1.6.3</gauge.maven.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -26,7 +27,7 @@
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
-            <version>3.17.2</version>
+            <version>3.27.3</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -43,19 +44,26 @@
         <dependency>
             <groupId>com.microsoft.playwright</groupId>
             <artifactId>playwright</artifactId>
-            <version>1.28.1</version>
+            <version>1.52.0</version>
         </dependency>
     </dependencies>
 
     <build>
+        <testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+            </testResource>
+            <testResource>
+                <directory>fixtures</directory>
+            </testResource>
+        </testResources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.7.0</version>
+                <version>3.15.0</version>
                 <configuration>
-                    <source>11</source>
-                    <target>11</target>
+                    <release>${java.version}</release>
                 </configuration>
             </plugin>
             <plugin>
@@ -82,7 +90,7 @@
                     <args>
                         <arg>-Xjsr305=strict</arg>
                     </args>
-                    <jvmTarget>${java.version}</jvmTarget>
+                    <jvmTarget>${kotlin.jvm.target}</jvmTarget>
                 </configuration>
                 <executions>
                     <execution>
