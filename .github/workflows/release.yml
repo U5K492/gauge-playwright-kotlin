@@ -1,0 +1,36 @@
+name: Release Template
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create template zip
+        run: |
+          zip -r gauge-playwright-kotlin.zip . \
+            --exclude ".git/*" \
+            --exclude ".github/*" \
+            --exclude ".gauge/*" \
+            --exclude ".idea/*" \
+            --exclude ".claude/*" \
+            --exclude "logs/*" \
+            --exclude "reports/*" \
+            --exclude "gauge_bin/*" \
+            --exclude "out/*" \
+            --exclude "target/*" \
+            --exclude "*.iml"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: gauge-playwright-kotlin.zip
+          generate_release_notes: true
