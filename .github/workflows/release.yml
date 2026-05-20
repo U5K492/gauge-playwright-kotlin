@@ -16,18 +16,22 @@ jobs:
 
       - name: Create template zip
         run: |
-          zip -r gauge-playwright-kotlin.zip . \
-            --exclude ".git/*" \
-            --exclude ".github/*" \
-            --exclude ".gauge/*" \
-            --exclude ".idea/*" \
-            --exclude ".claude/*" \
-            --exclude "logs/*" \
-            --exclude "reports/*" \
-            --exclude "gauge_bin/*" \
-            --exclude "out/*" \
-            --exclude "target/*" \
-            --exclude "*.iml"
+          mkdir -p /tmp/template/gauge-playwright-kotlin
+          rsync -a \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='.gauge' \
+            --exclude='.idea' \
+            --exclude='.claude' \
+            --exclude='logs' \
+            --exclude='reports' \
+            --exclude='gauge_bin' \
+            --exclude='out' \
+            --exclude='target' \
+            --exclude='*.iml' \
+            . /tmp/template/gauge-playwright-kotlin/
+          cd /tmp/template
+          zip -r $GITHUB_WORKSPACE/gauge-playwright-kotlin.zip gauge-playwright-kotlin/
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2

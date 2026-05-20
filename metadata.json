@@ -1,0 +1,7 @@
+{
+  "name": "gauge-playwright-kotlin",
+  "description": "Gauge template for Kotlin with Playwright",
+  "postInstallCmd": "mvn test-compile",
+  "postInstallMsg": "Run specifications with \"mvn test\" in project root.",
+  "version": "1.0.0"
+}
